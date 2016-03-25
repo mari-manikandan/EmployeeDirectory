@@ -1,11 +1,10 @@
 package com.himebaugh.employeedirectory;
 
-import java.util.ArrayList;
-
 import android.content.Context;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
+import java.util.ArrayList;
 
 public class EmployeeDatabase extends SQLiteOpenHelper {
 
@@ -55,22 +54,6 @@ public class EmployeeDatabase extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_EMPLOYEES);
         onCreate(db);
-    }
-
-    public Cursor getAllEmployeesCursor() {
-
-        SQLiteDatabase db = this.getReadableDatabase();
-
-        Cursor cursor = db.query(TABLE_EMPLOYEES, new String[] { COLUMN_ID, COLUMN_FIRSTNAME, COLUMN_LASTNAME, COLUMN_TITLE, COLUMN_DEPARTMENT, COLUMN_CITY, COLUMN_OFFICE_PHONE, COLUMN_MOBILE_PHONE, COLUMN_EMAIL, COLUMN_PICTURE }, null, null, null, null, null );
-
-        if (cursor != null) {
-            cursor.moveToFirst();
-        }
-
-        // cursor.close();
-        db.close();
-
-        return cursor;
     }
 
     private void seedData(SQLiteDatabase db) {

@@ -26,7 +26,21 @@
         <activity
             android:name=".DetailActivity"
             android:label="@string/employee_details">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data android:mimeType="vnd.android.cursor.item/vnd.himebaugh.search.employees" />
+            </intent-filter>
         </activity>
+
+        <provider
+            android:name="com.himebaugh.employeedirectory.EmployeeProvider"
+            android:authorities="com.himebaugh.employeedirectory.EmployeeProvider"
+            android:multiprocess="true" >
+        </provider>
+
     </application>
 
 </manifest>
